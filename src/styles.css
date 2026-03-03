@@ -1,0 +1,20 @@
+@import 'tailwindcss';
+@plugin 'daisyui';
+
+:root {
+  --wishflix-bg-dark: #141414;
+  --wishflix-bg-card: #1f1f1f;
+  --wishflix-accent: #e50914;
+  --wishflix-text: #ffffff;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--wishflix-bg-dark);
+  color: var(--wishflix-text);
+}
