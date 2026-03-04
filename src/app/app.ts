@@ -113,13 +113,13 @@ export class App {
   protected filterByAvailability(): void {
     this.onlyAvailable.update((available) => !available);
   }
-  protected filterAvailabilityLabel(): string {
+  protected filterAvailabilityLabel = computed((): string => {
     if (this.onlyAvailable()) {
       return 'Voir tous les jeux';
     } else {
       return 'Voir uniquement les jeux disponibles';
     }
-  }
+  });
 }
 
 // Signal principal: source de verite locale de la liste de jeux.
