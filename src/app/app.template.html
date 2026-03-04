@@ -57,6 +57,9 @@
       <div class="wishflix-catalogue__header">
         <h2 id="titre-catalogue" class="wishflix-catalogue__title">Catalogue de jeux</h2>
         <p class="wishflix-catalogue__subtitle">Decouvre notre selection de jeux video</p>
+        <button type="button" class="btn btn-primary mt-4" (click)="filterByAvailability()">
+          {{ filterAvailabilityLabel() }}
+        </button>
       </div>
 
       <div
@@ -66,7 +69,8 @@
       >
         <div class="stat">
           <div class="stat-title">Jeux disponibles</div>
-          <div class="stat-value text-primary">{{ availableGames().length }}</div>
+
+          <div class="stat-value text-primary">{{ disponibleGames().length }}</div>
         </div>
 
         <div class="stat">
@@ -76,7 +80,7 @@
       </div>
 
       <div class="wishflix-catalogue__grid">
-        @for (game of games(); track game.id) {
+        @for (game of availableGames(); track game.id) {
           <article class="card movie-card game-card" aria-label="Jeu Cyber Nexus 2077">
             <figure class="game-card__cover">
               <img [ngSrc]="game.img" [alt]="game.title" width="300" height="450" loading="lazy" />

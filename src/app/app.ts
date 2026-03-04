@@ -25,6 +25,7 @@ type Game = {
 })
 export class App {
   protected readonly nomApplication = 'WishFlix';
+  protected readonly onlyAvailable = signal(false);
   protected readonly games = signal<Game[]>([
     {
       id: 1,
@@ -101,8 +102,24 @@ export class App {
   ]);
 
   protected readonly availableGames = computed(() => {
+    if (!this.onlyAvailable()) return this.games();
     return this.games().filter((game) => game.available);
   });
+
+  protected readonly disponibleGames = computed(() => {
+    return this.games().filter((game) => game.available);
+  });
+
+  protected filterByAvailability(): void {
+    this.onlyAvailable.update((available) => !available);
+  }
+  protected filterAvailabilityLabel(): string {
+    if (this.onlyAvailable()) {
+      return 'Voir tous les jeux';
+    } else {
+      return 'Voir uniquement les jeux disponibles';
+    }
+  }
 }
 
 // Signal principal: source de verite locale de la liste de jeux.
