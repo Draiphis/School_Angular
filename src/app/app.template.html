@@ -53,38 +53,19 @@
       </div>
     </section>
 
-    <section aria-labelledby="titre-catalogue" class="wishflix-catalogue">
-      <div class="wishflix-catalogue__header">
-        <h2 id="titre-catalogue" class="wishflix-catalogue__title">Catalogue de jeux</h2>
-        <p class="wishflix-catalogue__subtitle">Decouvre notre selection de jeux video</p>
-        <button type="button" class="btn btn-primary mt-4" (click)="filterByAvailability()">
-          {{ filterAvailabilityLabel() }}
-        </button>
-      </div>
+    <game-section title="Catalogue de Jeux" subtitle="Découvrez nos jeux">
+      <button filter type="button" class="btn btn-primary mt-4" (click)="filterByAvailability()">
+        {{ filterAvailabilityLabel() }}
+      </button>
 
-      <div
-        class="stats shadow wishflix-catalogue__stats"
-        role="group"
-        aria-label="Statistiques catalogue"
-      >
-        <div class="stat">
-          <div class="stat-title">Jeux disponibles</div>
+      <ng-container length>{{ availableGames().length }}</ng-container>
 
-          <div class="stat-value text-primary">{{ disponibleGames().length }}</div>
-        </div>
-
-        <div class="stat">
-          <div class="stat-title">Ma Wishlist</div>
-          <div class="stat-value text-accent">0</div>
-        </div>
-      </div>
-
-      <div class="wishflix-catalogue__grid">
-        @for (game of availableGames(); track game.id) {
-          <game-card [game]="game"></game-card>
-        }
-      </div>
-    </section>
+      <!-- <div class="wishflix-catalogue__grid"> -->
+      @for (game of availableGames(); track game.id) {
+        <game-card [game]="game"></game-card>
+      }
+      <!-- </div> -->
+    </game-section>
   </main>
 
   <footer class="wishflix-footer" aria-label="Pied de page">

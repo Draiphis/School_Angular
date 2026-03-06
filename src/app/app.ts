@@ -2,17 +2,18 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { GameCard } from '../game/game-card';
 import { Game } from '../game/game.model';
+import { GameSection } from '../layout/game-section/game-section';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GameCard],
+  imports: [GameCard, NgOptimizedImage, GameSection],
   templateUrl: './app.template.html',
   styleUrls: ['./app.css'],
 })
 export class App {
   protected readonly nomApplication = 'WishFlix';
-  protected readonly onlyAvailable = signal(false);
+  protected readonly onlyAvailable = signal<boolean>(false);
   protected readonly games = signal<Game[]>([
     {
       id: 1,
