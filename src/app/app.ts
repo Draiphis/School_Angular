@@ -3,11 +3,12 @@ import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/c
 import { GameCard } from '../game/game-card';
 import { Game } from '../game/game.model';
 import { GameSection } from '../layout/game-section/game-section';
+import { FlixButton } from '../layout/flix-button/flix-button';
 
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [GameCard, NgOptimizedImage, GameSection],
+  imports: [GameCard, NgOptimizedImage, GameSection, FlixButton],
   templateUrl: './app.template.html',
   styleUrls: ['./app.css'],
 })

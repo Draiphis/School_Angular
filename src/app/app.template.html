@@ -45,18 +45,18 @@
           <p class="wishflix-hero__details">2023 | 4.5/5 | 42h d'histoire principale</p>
 
           <div class="wishflix-hero__actions">
-            <button type="button" class="btn btn-primary btn-lg">Lancer la lecture</button>
+            <flix-button role="primary" size="lg">Lancer la lecture </flix-button>
 
-            <button type="button" class="btn btn-outline btn-lg">Plus d'infos</button>
+            <flix-button role="outline" size="lg">Plus d'infos</flix-button>
           </div>
         </div>
       </div>
     </section>
 
     <game-section title="Catalogue de Jeux" subtitle="Découvrez nos jeux">
-      <button filter type="button" class="btn btn-primary mt-4" (click)="filterByAvailability()">
+      <flix-button filter role="primary" (click)="filterByAvailability()">
         {{ filterAvailabilityLabel() }}
-      </button>
+      </flix-button>
 
       <ng-container length>{{ availableGames().length }}</ng-container>
 
