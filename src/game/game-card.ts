@@ -2,11 +2,12 @@ import { Component, input, output } from '@angular/core';
 import { Game } from './game.model';
 import { NgOptimizedImage } from '@angular/common';
 import { FlixButton } from '../layout/flix-button/flix-button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'game-card',
   templateUrl: './game-card.template.html',
-  imports: [NgOptimizedImage, FlixButton],
+  imports: [NgOptimizedImage, FlixButton, RouterLink],
 })
 export class GameCard {
   game = input.required<Game>();
