@@ -21,8 +21,8 @@
 
       <h1 id="titre-hero" class="wishflix-hero__title">Cyber Nexus 2077</h1>
       <p class="wishflix-hero__slogan">
-        Bienvenue sur {{ nomApplication }}. Decouvre une megalopole en guerre, des choices moraux
-        extremes et des combats ultra-dynamiques.
+        Bienvenue sur {{ catalog.nomApplication }}. Decouvre une megalopole en guerre, des choices
+        moraux extremes et des combats ultra-dynamiques.
       </p>
       <p class="wishflix-hero__description">
         Cette semaine, plonge dans Cyber Nexus 2077: une aventure futuriste avec une ville ouverte,
@@ -41,20 +41,20 @@
 </section>
 
 <game-section title="Catalogue de Jeux" subtitle="Découvrez nos jeux">
-  <flix-button filter role="primary" (click)="filterByAvailability()">
+  <flix-button filter role="primary" (click)="catalog.filterByAvailability()">
     {{ filterAvailabilityLabel() }}
   </flix-button>
 
-  <ng-container length>{{ availableGames().length }}</ng-container>
+  <ng-container length>{{ catalog.availableGames().length }}</ng-container>
 
-  <ng-container stats-wishlist-count>{{ favoriteIds().length }}</ng-container>
+  <ng-container stats-wishlist-count>{{ catalog.favoriteIds().length }}</ng-container>
 
   <!-- <div class="wishflix-catalogue__grid"> -->
-  @for (game of availableGames(); track game.id) {
+  @for (game of catalog.availableGames(); track game.id) {
     <game-card
       [game]="game"
-      [isFavorite]="isFavorite(game.id)"
-      (favorite)="toggleFavorite($event)"
+      [isFavorite]="catalog.isFavorite(game.id)"
+      (favorite)="catalog.toggleFavorite($event)"
     ></game-card>
   }
   <!-- </div> -->
