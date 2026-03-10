@@ -90,6 +90,8 @@ export class App {
     },
   ]);
 
+  protected favoriteIds = signal<number[]>([]);
+
   protected readonly availableGames = computed(() => {
     if (!this.onlyAvailable()) return this.games();
     return this.games().filter((game) => game.available);
@@ -102,6 +104,20 @@ export class App {
   protected filterByAvailability(): void {
     this.onlyAvailable.update((available) => !available);
   }
+
+  protected toggleFavorite(gameId: number): void {
+    this.favoriteIds.update((gameIds) => {
+      if (!gameIds.includes(gameId)) {
+        return [...gameIds, gameId];
+      }
+      return gameIds.filter((id) => id !== gameId);
+    });
+  }
+
+  protected isFavorite(gameId: number): boolean {
+    return this.favoriteIds().includes(gameId);
+  }
+
   protected filterAvailabilityLabel(): string {
     if (this.onlyAvailable()) {
       return 'Voir tous les jeux';

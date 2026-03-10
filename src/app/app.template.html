@@ -60,9 +60,15 @@
 
       <ng-container length>{{ availableGames().length }}</ng-container>
 
+      <ng-container stats-wishlist-count>{{ favoriteIds().length }}</ng-container>
+
       <!-- <div class="wishflix-catalogue__grid"> -->
       @for (game of availableGames(); track game.id) {
-        <game-card [game]="game"></game-card>
+        <game-card
+          [game]="game"
+          [isFavorite]="isFavorite(game.id)"
+          (favorite)="toggleFavorite($event)"
+        ></game-card>
       }
       <!-- </div> -->
     </game-section>

@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-type ButtonType = 'primary' | 'secondary' | 'outiline';
+type ButtonType = 'primary' | 'secondary' | 'outline';
 type ButtonsSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 @Component({

@@ -31,8 +31,8 @@
         }
       </span>
 
-      <flix-button role=" btn-sm btn-outline" aria-pressed="false">
-        Ajouter a la wishlist
+      <flix-button role="outline" size="sm" aria-pressed="false" (click)="favorite.emit(game().id)">
+        {{ wishlistLabel }}
       </flix-button>
     </div>
   </div>

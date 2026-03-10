@@ -26,7 +26,9 @@
 
     <div class="stat">
       <div class="stat-title">Ma Wishlist</div>
-      <div class="stat-value text-accent">0</div>
+      <div class="stat-value text-accent">
+        <ng-content select="[stats-wishlist-count]"></ng-content>
+      </div>
     </div>
   </div>
   <div class="wishflix-catalogue__grid">
