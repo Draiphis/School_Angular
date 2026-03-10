@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Home } from '../pages/home/home.component';
+import { NotFound } from '../pages/not-found/not-found';
 
 // TODO (Seance 4 - routing): declarer ici les routes lazy-loaded vers
 // Accueil, DetailFilm, Favoris et NotFound.
@@ -9,5 +10,10 @@ export const routes: Routes = [
     path: '',
     component: Home,
     title: 'Wishflix - Accueil',
+  },
+  {
+    path: '**',
+    component: NotFound,
+    title: "418 i'm a teapot",
   },
 ];
