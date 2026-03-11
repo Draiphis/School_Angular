@@ -4,6 +4,7 @@ import {
   computed,
   Inject,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { Game } from '../../game/game.model';
@@ -20,7 +21,7 @@ import { GameCatalog } from '../../features/game/game-catalog';
   templateUrl: './home.page.html',
   styleUrls: ['./home.css'],
 })
-export class Home {
+export class Home implements OnInit {
   protected readonly catalog = inject(GameCatalog);
 
   protected filterAvailabilityLabel(): string {
@@ -29,5 +30,8 @@ export class Home {
     } else {
       return 'Voir uniquement les jeux disponibles';
     }
+  }
+  ngOnInit(): void {
+    this.catalog.loadGames();
   }
 }
