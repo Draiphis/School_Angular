@@ -6,6 +6,7 @@ import { Game } from '../../game/game.model';
   providedIn: 'root',
 })
 export class GameCatalog {
+  [x: string]: any;
   readonly nomApplication = 'WishFlix';
   readonly _onlyAvailable = signal<boolean>(false);
   readonly onlyAvailable = this._onlyAvailable.asReadonly();
@@ -111,5 +112,9 @@ export class GameCatalog {
 
   isFavorite(gameId: number): boolean {
     return this._favoriteIds().includes(gameId);
+  }
+
+  getGameSheet(gameId: number): Game | undefined {
+    return this.games().find((game) => game.id === gameId);
   }
 }
