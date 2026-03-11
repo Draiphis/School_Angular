@@ -1,4 +1,4 @@
-import { Component, computed, inject, Inject } from '@angular/core';
+import { Component, computed, inject, Inject, OnInit } from '@angular/core';
 import { GameCatalog } from '../../features/game/game-catalog';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from '../../game/game.model';
@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './game-detail.html',
   styleUrl: './game-detail.css',
 })
-export class GameDetail {
+export class GameDetail implements OnInit {
   protected route = inject(ActivatedRoute);
   protected catalog = inject(GameCatalog);
 
@@ -20,4 +20,7 @@ export class GameDetail {
   protected game = computed<Game | undefined>(() =>
     this.catalog.getGameSheet(parseInt(this.gameId)),
   );
+  ngOnInit(): void {
+    this.catalog.loadGames();
+  }
 }

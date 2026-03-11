@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Game } from '../../game/game.model';
 import { GameDatasource } from './game-datasource';
+import { delay } from 'rxjs';
+
+type State = 'IDLE' | 'LOADING' | 'ERROR' | 'SUCCESS';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +12,8 @@ import { GameDatasource } from './game-datasource';
 export class GameCatalog {
   [x: string]: any;
   readonly nomApplication = 'WishFlix';
+
+  protected readonly _state = signal<State>('IDLE');
 
   private readonly _dataSource = inject(GameDatasource);
   readonly _onlyAvailable = signal<boolean>(false);
@@ -28,11 +33,16 @@ export class GameCatalog {
   });
 
   loadGames(): void {
-    this._dataSource.fetchAll()?.subscribe({
-      next: (games) => {
-        this.games.set(games);
-      },
-    });
+    this._state.set('LOADING');
+    this._dataSource
+      .fetchAll()
+      .pipe(delay(2000))
+      .subscribe({
+        next: (games) => {
+          this.games.set(games);
+          this._state.set('SUCCESS');
+        },
+      });
   }
 
   filterByAvailability(): void {
@@ -50,6 +60,10 @@ export class GameCatalog {
 
   isFavorite(gameId: number): boolean {
     return this._favoriteIds().includes(gameId);
+  }
+
+  isState(state: State): boolean {
+    return this._state() === state;
   }
 
   getGameSheet(gameId: number): Game | undefined {
